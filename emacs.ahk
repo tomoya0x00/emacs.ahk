@@ -35,10 +35,12 @@ is_target()
 ;     Return 1
 ;   IfWinActive,ahk_class SunAwtFrame
 ;     Return 1
-;   IfWinActive,ahk_class Emacs ; NTEmacs
-;     Return 1  
+   IfWinActive,ahk_class Emacs ; NTEmacs
+     Return 1  
 ;   IfWinActive,ahk_class XEmacs ; XEmacs on Cygwin
 ;     Return 1
+;   IfWinActive,ahk_exec studio64.exe  ; Android Studio
+;     Return 1  
   Return 0
 }
 
@@ -125,6 +127,12 @@ yank()
 undo()
 {
   Send ^z
+  global is_pre_spc = 0
+  Return
+}
+redo()
+{
+  Send ^+z
   global is_pre_spc = 0
   Return
 }
@@ -330,26 +338,35 @@ scroll_down()
   Else
     yank()
   Return
-^/::
+^vkE2::
+^+vkE2::
   If is_target()
     Send %A_ThisHotkey%
   Else
     undo()
   Return  
-  
+^/::
+^+/::
+  If is_target()
+    Send %A_ThisHotkey%
+  Else
+    redo()
+  Return  
+
+
 ;$^{Space}::
 ;^vk20sc039::
-^vk20::
-  If is_target()
-    Send {CtrlDown}{Space}{CtrlUp}
-  Else
-  {
-    If is_pre_spc
-      is_pre_spc = 0
-    Else
-      is_pre_spc = 1
-  }
-  Return
+;^vk20::
+;  If is_target()
+;    Send {CtrlDown}{Space}{CtrlUp}
+;  Else
+;  {
+;    If is_pre_spc
+;      is_pre_spc = 0
+;    Else
+;      is_pre_spc = 1
+;  }
+;  Return
 ^@::
   If is_target()
     Send %A_ThisHotkey%

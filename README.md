@@ -8,10 +8,6 @@ This tiny script allows you to use the emacs-like key bindings on Windows, which
     <th>Emacs Lisp Function</th>
   </tr>
 <tr>
-<td>C-Space</td>
-<td>set-mark-command</td>
-</tr>
-<tr>
 <td>C-@</td>
 <td>set-mark-command</td>
 </tr>
@@ -80,8 +76,20 @@ This tiny script allows you to use the emacs-like key bindings on Windows, which
 <td>yank</td>
 </tr>
 <tr>
-<td>C-/</td>
+<td>C-\</td>
 <td>undo</td>
+</tr>
+<tr>
+<td>C-_</td>
+<td>undo</td>
+</tr>
+<tr>
+<td>C-/</td>
+<td>redo</td>
+</tr>
+<tr>
+<td>C-?</td>
+<td>redo</td>
 </tr>
 <tr>
 <td>C-a</td>
